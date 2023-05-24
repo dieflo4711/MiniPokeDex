@@ -22,6 +22,12 @@
 		0AEDED522A1E295600161031 /* PokemonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED512A1E295600161031 /* PokemonData.swift */; };
 		0AEDED542A1E298200161031 /* Pokemons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED532A1E298200161031 /* Pokemons.swift */; };
 		0AEDED562A1E2F8100161031 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED552A1E2F8100161031 /* SideMenuView.swift */; };
+		0AEDED5A2A1E484100161031 /* BookmarkListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED592A1E484100161031 /* BookmarkListView.swift */; };
+		0AEDED5C2A1E488800161031 /* BookmarkListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED5B2A1E488800161031 /* BookmarkListViewModel.swift */; };
+		0AEDED5E2A1E4B5600161031 /* BookmarkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED5D2A1E4B5600161031 /* BookmarkDetailView.swift */; };
+		0AEDED602A1E4C9700161031 /* BookmarkDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED5F2A1E4C9700161031 /* BookmarkDetailViewModel.swift */; };
+		0AEDED622A1E6B3400161031 /* TypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED612A1E6B3400161031 /* TypeView.swift */; };
+		0AEDED642A1E6E3300161031 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED632A1E6E3300161031 /* StatsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +47,12 @@
 		0AEDED512A1E295600161031 /* PokemonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonData.swift; sourceTree = "<group>"; };
 		0AEDED532A1E298200161031 /* Pokemons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemons.swift; sourceTree = "<group>"; };
 		0AEDED552A1E2F8100161031 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
+		0AEDED592A1E484100161031 /* BookmarkListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkListView.swift; sourceTree = "<group>"; };
+		0AEDED5B2A1E488800161031 /* BookmarkListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkListViewModel.swift; sourceTree = "<group>"; };
+		0AEDED5D2A1E4B5600161031 /* BookmarkDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkDetailView.swift; sourceTree = "<group>"; };
+		0AEDED5F2A1E4C9700161031 /* BookmarkDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkDetailViewModel.swift; sourceTree = "<group>"; };
+		0AEDED612A1E6B3400161031 /* TypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeView.swift; sourceTree = "<group>"; };
+		0AEDED632A1E6E3300161031 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +120,8 @@
 			isa = PBXGroup;
 			children = (
 				0AEDED4B2A1E0D5800161031 /* ParentStartViewModel.swift */,
+				0AEDED5B2A1E488800161031 /* BookmarkListViewModel.swift */,
+				0AEDED5F2A1E4C9700161031 /* BookmarkDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -118,8 +132,11 @@
 				0AEDED302A1E071200161031 /* TabBarView.swift */,
 				0AEDED402A1E0B1700161031 /* ParentStartView.swift */,
 				0AEDED422A1E0B2400161031 /* KidStartView.swift */,
-				0AEDED442A1E0BA500161031 /* CoreDataManager.swift */,
 				0AEDED552A1E2F8100161031 /* SideMenuView.swift */,
+				0AEDED592A1E484100161031 /* BookmarkListView.swift */,
+				0AEDED5D2A1E4B5600161031 /* BookmarkDetailView.swift */,
+				0AEDED612A1E6B3400161031 /* TypeView.swift */,
+				0AEDED632A1E6E3300161031 /* StatsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -127,6 +144,7 @@
 		0AEDED3F2A1E0ADE00161031 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				0AEDED442A1E0BA500161031 /* CoreDataManager.swift */,
 				0AEDED4F2A1E291D00161031 /* PokemonService.swift */,
 			);
 			path = Services;
@@ -210,11 +228,17 @@
 				0AEDED312A1E071200161031 /* TabBarView.swift in Sources */,
 				0AEDED482A1E0BD100161031 /* Pokemons.xcdatamodeld in Sources */,
 				0AEDED4E2A1E28CF00161031 /* PokemonDisplay.swift in Sources */,
+				0AEDED622A1E6B3400161031 /* TypeView.swift in Sources */,
+				0AEDED5C2A1E488800161031 /* BookmarkListViewModel.swift in Sources */,
+				0AEDED5E2A1E4B5600161031 /* BookmarkDetailView.swift in Sources */,
 				0AEDED502A1E291D00161031 /* PokemonService.swift in Sources */,
 				0AEDED412A1E0B1700161031 /* ParentStartView.swift in Sources */,
 				0AEDED432A1E0B2400161031 /* KidStartView.swift in Sources */,
+				0AEDED642A1E6E3300161031 /* StatsView.swift in Sources */,
+				0AEDED602A1E4C9700161031 /* BookmarkDetailViewModel.swift in Sources */,
 				0AEDED452A1E0BA500161031 /* CoreDataManager.swift in Sources */,
 				0AEDED2F2A1E071200161031 /* MiniPokedexApp.swift in Sources */,
+				0AEDED5A2A1E484100161031 /* BookmarkListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

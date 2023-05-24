@@ -110,5 +110,25 @@ class PokemonService {
     func removePokemon(withName name: String) {
         coreDataManager.removePokemon(withName: name)
     }
+    
+    func fetchBookmarked() -> [Pokemon] {
+        return coreDataManager.fetchBookmarked()
+    }
+    
+    func removePokemonBookmark(for pokemon: Pokemon) {
+        coreDataManager.removeBookmark(withName: pokemon.name)
+    }
+    
+    func addPokemonBookmark(for pokemon: Pokemon) {
+        coreDataManager.bookmarkPokemon(name: pokemon.name, url: pokemon.url)
+    }
+    
+    func isBookmarked(_ pokemon: Pokemon) -> Bool {
+        return coreDataManager.isBookmarked(name: pokemon.name)
+    }
+    
+    func removeAllBookmarks() {
+        coreDataManager.removeBookmarks()
+    }
 }
 

@@ -63,6 +63,15 @@ struct ParentStartView: View {
                     .foregroundColor(isMenuOpen ? .white.opacity(0.5) : .white)
             }
             .padding(.trailing)
+            Spacer()
+            Button(action: {
+                viewModel.toggleBookmark()
+            }) {
+                Image(systemName: viewModel.bookmarked ? "bookmark.fill" : "bookmark")
+                    .font(.title)
+                    .padding()
+                    .foregroundColor(.white)
+            }
         }
     }
     
@@ -73,20 +82,11 @@ struct ParentStartView: View {
                     .font(.title)
                     .foregroundColor(.blue)
                 
-                pokemonImageView(with: pokemon.sprite)
+                imageView(with: pokemon.sprite)
                 
-                HStack {
-                    ForEach(pokemon.type, id: \.self) { string in
-                        Text(string)
-                            .padding(8)
-                            .background(Color.blue)
-                            .cornerRadius(10)
-                            .foregroundColor(.white)
-                    }
-                }
-                .padding()
+                TypeView(type: pokemon.type)
                 
-                statsView(with: pokemon.stats)
+                StatsView(stats: pokemon.stats)
                 
                 buttonsView
                 Spacer()
@@ -98,7 +98,7 @@ struct ParentStartView: View {
         }
     }
     
-    private func pokemonImageView(with imageUrl: String) -> some View {
+    private func imageView(with imageUrl: String) -> some View {
         let pokemonImageURL = URL(string: imageUrl)
         return ZStack(alignment: .topTrailing) {
             AsyncImage(url: pokemonImageURL) { phase in
@@ -121,42 +121,6 @@ struct ParentStartView: View {
         }
     }
     
-    private func statsView(with stats: PokemonStats) -> some View {
-        VStack(alignment: .leading) {
-            let propertyPairs = [
-                ("hp", stats.hp),
-                ("attack", stats.attack),
-                ("defense", stats.defense),
-                ("specialAttack", stats.specialAttack),
-                ("specialDefense", stats.specialDefense),
-                ("speed", stats.speed)
-            ]
-
-            ForEach(0..<propertyPairs.count / 2, id: \.self) { index in
-                HStack {
-                    statItem(label: propertyPairs[index * 2])
-                    Spacer()
-                    statItem(label: propertyPairs[index * 2 + 1])
-                }
-            }
-        }
-        .padding(.horizontal)
-    }
-    
-    var propertyNames: [String] {
-        return Mirror(reflecting: self).children.compactMap { $0.label }
-    }
-    
-    private func statItem(label: (String, Int)) -> some View {
-        HStack {
-            Text("\(label.0):")
-                .bold()
-                .foregroundColor(.blue)
-            Text("\(label.1)")
-                .foregroundColor(.gray)
-        }
-    }
-    
     private var buttonsView: some View {
         Button(action: {
             Task {
@@ -170,14 +134,6 @@ struct ParentStartView: View {
                 .foregroundColor(.white)
                 .cornerRadius(10)
         }
-    }
-    
-    private func pokemonTitle() -> String {
-        if let pokemon = viewModel.pokemon {
-            return pokemon.name.uppercased()
-        }
-        
-        return ""
     }
 }
 

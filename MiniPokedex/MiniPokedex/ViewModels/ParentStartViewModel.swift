@@ -9,6 +9,7 @@ import SwiftUI
 
 class ParentStartViewModel: ObservableObject {
     @Published var pokemon: PokemonDisplay?
+    @Published var bookmarked = false
     
     func getPokemon() async {
         let randomPokemon = await PokemonService.shared.getRandomPokemon()
@@ -18,6 +19,33 @@ class ParentStartViewModel: ObservableObject {
         
         DispatchQueue.main.async {
             self.pokemon = displayPokemon
+            self.bookmarked = self.isBookmarked(pokemon)
         }
+    }
+    
+    func isBookmarked(_ pokemon: Pokemon) -> Bool {
+        return PokemonService.shared.isBookmarked(pokemon)
+    }
+    
+    func removeBookmark(_ pokemon: Pokemon) {
+        PokemonService.shared.removePokemonBookmark(for: pokemon)
+        bookmarked.toggle()
+    }
+    
+    func toggleBookmark() {
+        if let name = pokemon?.name, let sprite = pokemon?.sprite {
+            let pokemon = Pokemon(name: name, url: sprite)
+            
+            if bookmarked {
+                removeBookmark(pokemon)
+            } else {
+                addBookmark(pokemon)
+            }
+        }
+    }
+    
+    func addBookmark(_ pokemon: Pokemon) {
+        PokemonService.shared.addPokemonBookmark(for: pokemon)
+        bookmarked.toggle()
     }
 }

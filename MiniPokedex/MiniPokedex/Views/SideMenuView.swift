@@ -13,16 +13,18 @@ struct SideMenuView: View {
             Text("Pokedex")
                 .bold()
                 .font(.title)
-            IconTextRow(systemName: "bookmark", text: "Bookmarked")
-                .foregroundColor(.blue)
+            
+            NavigationLink(destination: BookmarkListView()) {
+                IconTextRow(systemName: "bookmark", text: "Bookmarked")
+                    .foregroundColor(.blue)
+            }
             IconTextRow(systemName: "checkmark.circle", text: "Selected")
                 .foregroundColor(.blue)
-            
             Spacer()
         }
         .padding(.top, 32)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(white: 0.9))
+        .background(.white)
     }
 }
 

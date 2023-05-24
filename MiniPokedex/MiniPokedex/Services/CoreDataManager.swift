@@ -56,7 +56,6 @@ class CoreDataManager: ObservableObject {
         }
     }
 
-    // Add a Pokemon entity to Core Data
     func addPokemon(name: String, url: String) {
         let pokemon = PokemonEnt(context: persistentContainer.viewContext)
         pokemon.name = name
@@ -108,6 +107,83 @@ class CoreDataManager: ObservableObject {
         } catch {
            print("Failed to delete entities: \(error)")
         }
+    }
+    
+    func removeBookmark(withName name: String) {
+        let viewContext = persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<BookmarkedEnt> = BookmarkedEnt.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "name == %@", name)
+        
+        do {
+            let fetchedEntities = try viewContext.fetch(fetchRequest)
+            fetchedEntities.forEach(viewContext.delete)
+            saveContext()
+        } catch {
+            fatalError("Failed to fetch and delete Pokemon entities: \(error)")
+        }
+    }
+    
+    func removeBookmarks() {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = BookmarkedEnt.fetchRequest()
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+        do {
+           try persistentContainer.viewContext.execute(deleteRequest)
+           saveContext()
+        } catch {
+           print("Failed to delete entities: \(error)")
+        }
+    }
+
+    func isBookmarked(name: String) -> Bool {
+        let fetchRequest: NSFetchRequest<BookmarkedEnt> = BookmarkedEnt.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "name == %@", name)
+
+        if let result = try? persistentContainer.viewContext.fetch(fetchRequest), !result.isEmpty {
+            return true
+        }
+
+        return false
+    }
+    
+    func fetchBookmarked() -> [Pokemon] {
+        let fetchRequest: NSFetchRequest<BookmarkedEnt> = BookmarkedEnt.fetchRequest()
+
+        do {
+            let fetchedEntities = try persistentContainer.viewContext.fetch(fetchRequest)
+
+            let pokemonArray = fetchedEntities.map { pokemonEntity -> Pokemon in
+                return Pokemon(name: pokemonEntity.name ?? "Unknown", url: pokemonEntity.url ?? "Unknown")
+            }
+
+            return pokemonArray
+        } catch {
+            fatalError("Failed to fetch Pokemon entities: \(error)")
+        }
+    }
+    
+    func fetchBookmarkedPokemons() -> [Pokemon] {
+        let fetchRequest: NSFetchRequest<BookmarkedEnt> = BookmarkedEnt.fetchRequest()
+
+        do {
+            let fetchedEntities = try persistentContainer.viewContext.fetch(fetchRequest)
+
+            let pokemonArray = fetchedEntities.map { pokemonEntity -> Pokemon in
+                return Pokemon(name: pokemonEntity.name ?? "Unknown", url: pokemonEntity.url ?? "Unknown")
+            }
+
+            return pokemonArray
+        } catch {
+            fatalError("Failed to fetch Pokemon entities: \(error)")
+        }
+    }
+    
+    func bookmarkPokemon(name: String, url: String) {
+        let pokemon = BookmarkedEnt(context: persistentContainer.viewContext)
+        pokemon.name = name
+        pokemon.url = url
+
+        saveContext()
     }
 }
 
