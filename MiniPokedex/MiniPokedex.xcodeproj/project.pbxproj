@@ -29,6 +29,9 @@
 		0AEDED622A1E6B3400161031 /* TypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED612A1E6B3400161031 /* TypeView.swift */; };
 		0AEDED642A1E6E3300161031 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED632A1E6E3300161031 /* StatsView.swift */; };
 		0AEDED662A1EB4E100161031 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED652A1EB4E100161031 /* ImageView.swift */; };
+		0AEDED682A1EBC2100161031 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED672A1EBC2100161031 /* UserDefaultsManager.swift */; };
+		0AEDED6A2A1EC3FA00161031 /* SelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED692A1EC3FA00161031 /* SelectedView.swift */; };
+		0AEDED6C2A1EC9AF00161031 /* SelectedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED6B2A1EC9AF00161031 /* SelectedViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +58,9 @@
 		0AEDED612A1E6B3400161031 /* TypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeView.swift; sourceTree = "<group>"; };
 		0AEDED632A1E6E3300161031 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		0AEDED652A1EB4E100161031 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		0AEDED672A1EBC2100161031 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		0AEDED692A1EC3FA00161031 /* SelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedView.swift; sourceTree = "<group>"; };
+		0AEDED6B2A1EC9AF00161031 /* SelectedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +130,7 @@
 				0AEDED4B2A1E0D5800161031 /* ParentStartViewModel.swift */,
 				0AEDED5B2A1E488800161031 /* BookmarkListViewModel.swift */,
 				0AEDED5F2A1E4C9700161031 /* BookmarkDetailViewModel.swift */,
+				0AEDED6B2A1EC9AF00161031 /* SelectedViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -140,6 +147,7 @@
 				0AEDED612A1E6B3400161031 /* TypeView.swift */,
 				0AEDED632A1E6E3300161031 /* StatsView.swift */,
 				0AEDED652A1EB4E100161031 /* ImageView.swift */,
+				0AEDED692A1EC3FA00161031 /* SelectedView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -149,6 +157,7 @@
 			children = (
 				0AEDED442A1E0BA500161031 /* CoreDataManager.swift */,
 				0AEDED4F2A1E291D00161031 /* PokemonService.swift */,
+				0AEDED672A1EBC2100161031 /* UserDefaultsManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -233,13 +242,16 @@
 				0AEDED482A1E0BD100161031 /* Pokemons.xcdatamodeld in Sources */,
 				0AEDED4E2A1E28CF00161031 /* PokemonDisplay.swift in Sources */,
 				0AEDED622A1E6B3400161031 /* TypeView.swift in Sources */,
+				0AEDED6C2A1EC9AF00161031 /* SelectedViewModel.swift in Sources */,
 				0AEDED5C2A1E488800161031 /* BookmarkListViewModel.swift in Sources */,
+				0AEDED6A2A1EC3FA00161031 /* SelectedView.swift in Sources */,
 				0AEDED5E2A1E4B5600161031 /* BookmarkDetailView.swift in Sources */,
 				0AEDED502A1E291D00161031 /* PokemonService.swift in Sources */,
 				0AEDED412A1E0B1700161031 /* ParentStartView.swift in Sources */,
 				0AEDED432A1E0B2400161031 /* KidStartView.swift in Sources */,
 				0AEDED642A1E6E3300161031 /* StatsView.swift in Sources */,
 				0AEDED602A1E4C9700161031 /* BookmarkDetailViewModel.swift in Sources */,
+				0AEDED682A1EBC2100161031 /* UserDefaultsManager.swift in Sources */,
 				0AEDED452A1E0BA500161031 /* CoreDataManager.swift in Sources */,
 				0AEDED2F2A1E071200161031 /* MiniPokedexApp.swift in Sources */,
 				0AEDED5A2A1E484100161031 /* BookmarkListView.swift in Sources */,

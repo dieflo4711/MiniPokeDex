@@ -89,6 +89,7 @@ struct ParentStartView: View {
                 StatsView(stats: pokemon.stats)
                 
                 buttonsView
+                
                 Spacer()
             } else {
                 Text("Fetching Pokémon...")
@@ -99,17 +100,33 @@ struct ParentStartView: View {
     }
     
     private var buttonsView: some View {
-        Button(action: {
-            Task {
-                await viewModel.getPokemon()
+        HStack {
+            Button(action: {
+                viewModel.toggleSelected()
+            }) {
+                Text("Use")
+                    .font(.title3)
+                    .padding()
+                    .background(viewModel.isSelected ? Color.green : Color.clear)
+                    .foregroundColor(viewModel.isSelected ? .white : Color.black)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(viewModel.isSelected ? Color.green : Color.black, lineWidth: 1)
+                    )
             }
-        }) {
-            Text("Change")
-                .font(.title3)
-                .padding()
-                .background(Color.blue)
-                .foregroundColor(.white)
-                .cornerRadius(10)
+            
+            Button(action: {
+                Task {
+                    await viewModel.getPokemon()
+                }
+            }) {
+                Text("Change")
+                    .font(.title3)
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 class PokemonService {
     static let shared = PokemonService()
     private let coreDataManager = CoreDataManager.shared
+    private let userDefaultsManager = UserDefaultsManager.shared
     private let limit = 500
     
     private func fetchPokemons() async throws -> [Pokemon] {
@@ -129,6 +130,24 @@ class PokemonService {
     
     func removeAllBookmarks() {
         coreDataManager.removeBookmarks()
+    }
+    
+    //  Selected Pokémon functions
+    
+    func isSelected(_ name: String) -> Bool {
+        return userDefaultsManager.isSaved(with: name)
+    }
+    
+    func unselectPokemon() {
+        userDefaultsManager.clear()
+    }
+    
+    func selectPokemon(_ pokemon: Pokemon) {
+        userDefaultsManager.save(pokemon)
+    }
+    
+    func getSelectedPokemon() -> Pokemon? {
+        return userDefaultsManager.load()
     }
 }
 

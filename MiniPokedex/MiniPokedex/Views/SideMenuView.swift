@@ -18,8 +18,10 @@ struct SideMenuView: View {
                 IconTextRow(systemName: "bookmark", text: "Bookmarked")
                     .foregroundColor(.blue)
             }
-            IconTextRow(systemName: "checkmark.circle", text: "Selected")
-                .foregroundColor(.blue)
+            NavigationLink(destination: SelectedView()) {
+                IconTextRow(systemName: "checkmark.circle", text: "Selected")
+                    .foregroundColor(.blue)
+            }
             Spacer()
         }
         .padding(.top, 32)
