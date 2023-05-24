@@ -13,12 +13,12 @@ struct StatsView: View {
     var body: some View {
         VStack(alignment: .leading) {
             let propertyPairs = [
-                ("hp", stats.hp),
-                ("attack", stats.attack),
-                ("defense", stats.defense),
-                ("specialAttack", stats.specialAttack),
-                ("specialDefense", stats.specialDefense),
-                ("speed", stats.speed)
+                ("Hp", stats.hp),
+                ("Attack", stats.attack),
+                ("Defense", stats.defense),
+                ("SpecialAttack", stats.specialAttack),
+                ("SpecialDefense", stats.specialDefense),
+                ("Speed", stats.speed)
             ]
 
             ForEach(0..<propertyPairs.count / 2, id: \.self) { index in

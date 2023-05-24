@@ -63,7 +63,9 @@ struct ParentStartView: View {
                     .foregroundColor(isMenuOpen ? .white.opacity(0.5) : .white)
             }
             .padding(.trailing)
+            
             Spacer()
+            
             Button(action: {
                 viewModel.toggleBookmark()
             }) {

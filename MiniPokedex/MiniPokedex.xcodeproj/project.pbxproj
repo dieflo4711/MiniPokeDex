@@ -32,6 +32,7 @@
 		0AEDED682A1EBC2100161031 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED672A1EBC2100161031 /* UserDefaultsManager.swift */; };
 		0AEDED6A2A1EC3FA00161031 /* SelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED692A1EC3FA00161031 /* SelectedView.swift */; };
 		0AEDED6C2A1EC9AF00161031 /* SelectedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED6B2A1EC9AF00161031 /* SelectedViewModel.swift */; };
+		0AEDED6E2A1ED09400161031 /* KidStartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED6D2A1ED09400161031 /* KidStartViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		0AEDED672A1EBC2100161031 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		0AEDED692A1EC3FA00161031 /* SelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedView.swift; sourceTree = "<group>"; };
 		0AEDED6B2A1EC9AF00161031 /* SelectedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedViewModel.swift; sourceTree = "<group>"; };
+		0AEDED6D2A1ED09400161031 /* KidStartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidStartViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 				0AEDED5B2A1E488800161031 /* BookmarkListViewModel.swift */,
 				0AEDED5F2A1E4C9700161031 /* BookmarkDetailViewModel.swift */,
 				0AEDED6B2A1EC9AF00161031 /* SelectedViewModel.swift */,
+				0AEDED6D2A1ED09400161031 /* KidStartViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				0AEDED642A1E6E3300161031 /* StatsView.swift in Sources */,
 				0AEDED602A1E4C9700161031 /* BookmarkDetailViewModel.swift in Sources */,
 				0AEDED682A1EBC2100161031 /* UserDefaultsManager.swift in Sources */,
+				0AEDED6E2A1ED09400161031 /* KidStartViewModel.swift in Sources */,
 				0AEDED452A1E0BA500161031 /* CoreDataManager.swift in Sources */,
 				0AEDED2F2A1E071200161031 /* MiniPokedexApp.swift in Sources */,
 				0AEDED5A2A1E484100161031 /* BookmarkListView.swift in Sources */,

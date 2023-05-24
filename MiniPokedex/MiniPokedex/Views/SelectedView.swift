@@ -31,7 +31,6 @@ struct SelectedView: View {
                                 .stroke(viewModel.isSelected ? Color.green : Color.black, lineWidth: 1)
                         )
                 }
-                Spacer()
             } else {
                 Text("Your are currently not using a Pokemon")
                     .font(.title)

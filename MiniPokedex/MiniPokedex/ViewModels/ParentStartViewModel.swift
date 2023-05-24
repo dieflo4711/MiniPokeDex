@@ -13,8 +13,8 @@ class ParentStartViewModel: ObservableObject {
     @Published var isSelected = false
     
     func getPokemon() async {
-        let randomPokemon = await PokemonService.shared.getRandomPokemon()
-        let displayPokemon = await PokemonService.shared.getDisplayData(for: randomPokemon?.name)
+        let randomPokemon = await getRandomPokemon()
+        let displayPokemon = await getDisplayData(for: randomPokemon?.name)
         let pokemon = Pokemon(name: randomPokemon?.name ?? "",
                               url: displayPokemon?.sprite ?? "")
         
@@ -23,6 +23,14 @@ class ParentStartViewModel: ObservableObject {
             self.bookmarked = self.isBookmarked(pokemon)
             self.isSelected = self.isSelected(self.pokemon)
         }
+    }
+    
+    func getRandomPokemon() async -> Pokemon? {
+        return await PokemonService.shared.getRandomPokemon()
+    }
+    
+    func getDisplayData(for name: String?) async -> PokemonDisplay? {
+        return await PokemonService.shared.getDisplayData(for: name)
     }
     
     func isBookmarked(_ pokemon: Pokemon) -> Bool {

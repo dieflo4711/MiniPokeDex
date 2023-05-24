@@ -8,8 +8,33 @@
 import SwiftUI
 
 struct KidStartView: View {
+    @StateObject private var viewModel = KidStartViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            if let pokemon = viewModel.pokemon {
+                Text(pokemon.name.capitalized)
+                    .font(.title)
+                    .padding(.top, 10)
+                
+                ImageView(url: pokemon.sprite)
+                
+                TypeView(type: pokemon.type)
+                
+                StatsView(stats: pokemon.stats)
+                
+                Spacer()
+            } else {
+                Text("Pick a Pokemon and come back!")
+                    .font(.title)
+                    .padding()
+            }
+        }
+        .onAppear {
+            Task {
+                await viewModel.getSelectedPokemon()
+            }
+        }
     }
 }
 
@@ -18,3 +43,4 @@ struct KidStartView_Previews: PreviewProvider {
         KidStartView()
     }
 }
+

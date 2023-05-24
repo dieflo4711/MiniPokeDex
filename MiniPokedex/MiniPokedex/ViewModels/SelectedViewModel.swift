@@ -15,6 +15,7 @@ class SelectedViewModel: ObservableObject {
     
     func getSelectedPokemon() {
         pokemon = getSelected()
+        
         if let pokemon = self.pokemon {
             isSelected = isSelected(pokemon)
             bookmarked = isBookmarked(pokemon)
