@@ -21,6 +21,7 @@
 		0AEDED502A1E291D00161031 /* PokemonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED4F2A1E291D00161031 /* PokemonService.swift */; };
 		0AEDED522A1E295600161031 /* PokemonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED512A1E295600161031 /* PokemonData.swift */; };
 		0AEDED542A1E298200161031 /* Pokemons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED532A1E298200161031 /* Pokemons.swift */; };
+		0AEDED562A1E2F8100161031 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED552A1E2F8100161031 /* SideMenuView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		0AEDED4F2A1E291D00161031 /* PokemonService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonService.swift; sourceTree = "<group>"; };
 		0AEDED512A1E295600161031 /* PokemonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonData.swift; sourceTree = "<group>"; };
 		0AEDED532A1E298200161031 /* Pokemons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemons.swift; sourceTree = "<group>"; };
+		0AEDED552A1E2F8100161031 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				0AEDED402A1E0B1700161031 /* ParentStartView.swift */,
 				0AEDED422A1E0B2400161031 /* KidStartView.swift */,
 				0AEDED442A1E0BA500161031 /* CoreDataManager.swift */,
+				0AEDED552A1E2F8100161031 /* SideMenuView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				0AEDED4A2A1E0CDE00161031 /* Pokemon.swift in Sources */,
 				0AEDED542A1E298200161031 /* Pokemons.swift in Sources */,
 				0AEDED4C2A1E0D5800161031 /* ParentStartViewModel.swift in Sources */,
+				0AEDED562A1E2F8100161031 /* SideMenuView.swift in Sources */,
 				0AEDED522A1E295600161031 /* PokemonData.swift in Sources */,
 				0AEDED312A1E071200161031 /* TabBarView.swift in Sources */,
 				0AEDED482A1E0BD100161031 /* Pokemons.xcdatamodeld in Sources */,
