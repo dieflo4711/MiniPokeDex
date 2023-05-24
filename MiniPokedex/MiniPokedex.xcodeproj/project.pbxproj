@@ -17,6 +17,10 @@
 		0AEDED482A1E0BD100161031 /* Pokemons.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED462A1E0BD100161031 /* Pokemons.xcdatamodeld */; };
 		0AEDED4A2A1E0CDE00161031 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED492A1E0CDE00161031 /* Pokemon.swift */; };
 		0AEDED4C2A1E0D5800161031 /* ParentStartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED4B2A1E0D5800161031 /* ParentStartViewModel.swift */; };
+		0AEDED4E2A1E28CF00161031 /* PokemonDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED4D2A1E28CF00161031 /* PokemonDisplay.swift */; };
+		0AEDED502A1E291D00161031 /* PokemonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED4F2A1E291D00161031 /* PokemonService.swift */; };
+		0AEDED522A1E295600161031 /* PokemonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED512A1E295600161031 /* PokemonData.swift */; };
+		0AEDED542A1E298200161031 /* Pokemons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED532A1E298200161031 /* Pokemons.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +35,10 @@
 		0AEDED472A1E0BD100161031 /* Pokemons.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pokemons.xcdatamodel; sourceTree = "<group>"; };
 		0AEDED492A1E0CDE00161031 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		0AEDED4B2A1E0D5800161031 /* ParentStartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentStartViewModel.swift; sourceTree = "<group>"; };
+		0AEDED4D2A1E28CF00161031 /* PokemonDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDisplay.swift; sourceTree = "<group>"; };
+		0AEDED4F2A1E291D00161031 /* PokemonService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonService.swift; sourceTree = "<group>"; };
+		0AEDED512A1E295600161031 /* PokemonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonData.swift; sourceTree = "<group>"; };
+		0AEDED532A1E298200161031 /* Pokemons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemons.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +76,6 @@
 				0AEDED3D2A1E0AA900161031 /* ViewModels */,
 				0AEDED3C2A1E0AA000161031 /* Models */,
 				0AEDED2E2A1E071200161031 /* MiniPokedexApp.swift */,
-				0AEDED302A1E071200161031 /* TabBarView.swift */,
 				0AEDED322A1E071400161031 /* Assets.xcassets */,
 				0AEDED342A1E071400161031 /* Preview Content */,
 				0AEDED462A1E0BD100161031 /* Pokemons.xcdatamodeld */,
@@ -88,6 +95,9 @@
 			isa = PBXGroup;
 			children = (
 				0AEDED492A1E0CDE00161031 /* Pokemon.swift */,
+				0AEDED4D2A1E28CF00161031 /* PokemonDisplay.swift */,
+				0AEDED512A1E295600161031 /* PokemonData.swift */,
+				0AEDED532A1E298200161031 /* Pokemons.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -103,6 +113,7 @@
 		0AEDED3E2A1E0AD800161031 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0AEDED302A1E071200161031 /* TabBarView.swift */,
 				0AEDED402A1E0B1700161031 /* ParentStartView.swift */,
 				0AEDED422A1E0B2400161031 /* KidStartView.swift */,
 				0AEDED442A1E0BA500161031 /* CoreDataManager.swift */,
@@ -113,6 +124,7 @@
 		0AEDED3F2A1E0ADE00161031 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				0AEDED4F2A1E291D00161031 /* PokemonService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -188,9 +200,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AEDED4A2A1E0CDE00161031 /* Pokemon.swift in Sources */,
+				0AEDED542A1E298200161031 /* Pokemons.swift in Sources */,
 				0AEDED4C2A1E0D5800161031 /* ParentStartViewModel.swift in Sources */,
+				0AEDED522A1E295600161031 /* PokemonData.swift in Sources */,
 				0AEDED312A1E071200161031 /* TabBarView.swift in Sources */,
 				0AEDED482A1E0BD100161031 /* Pokemons.xcdatamodeld in Sources */,
+				0AEDED4E2A1E28CF00161031 /* PokemonDisplay.swift in Sources */,
+				0AEDED502A1E291D00161031 /* PokemonService.swift in Sources */,
 				0AEDED412A1E0B1700161031 /* ParentStartView.swift in Sources */,
 				0AEDED432A1E0B2400161031 /* KidStartView.swift in Sources */,
 				0AEDED452A1E0BA500161031 /* CoreDataManager.swift in Sources */,
