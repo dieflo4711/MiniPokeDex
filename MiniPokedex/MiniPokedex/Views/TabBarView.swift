@@ -19,17 +19,25 @@ struct TabBarView: View {
         TabView(selection: $selectedTab) {
             ParentStartView()
                 .tabItem {
+                    Image(systemName: "person.fill")
                     Text("Parent")
+                        .foregroundColor(.brown)
                 }
                 .tag(Tab.parent)
             
             KidStartView()
                 .tabItem {
+                    Image(systemName: "gamecontroller.fill")
                     Text("Kid")
+                        .foregroundColor(.brown)
                 }
                 .tag(Tab.kid)
         }
-        .navigationBarTitle("Join as")
+        .tint(.white)
+        .onAppear {
+            UITabBar.appearance().backgroundColor = UIColor(Color.blue)
+            UITabBar.appearance().unselectedItemTintColor = UIColor(Color.white.opacity(0.5))
+        }
     }
 }
 
@@ -38,3 +46,4 @@ struct TabBarView_Previews: PreviewProvider {
         TabBarView()
     }
 }
+
