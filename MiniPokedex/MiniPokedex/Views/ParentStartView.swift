@@ -82,7 +82,7 @@ struct ParentStartView: View {
                     .font(.title)
                     .foregroundColor(.blue)
                 
-                imageView(with: pokemon.sprite)
+                ImageView(url: pokemon.sprite)
                 
                 TypeView(type: pokemon.type)
                 
@@ -95,29 +95,6 @@ struct ParentStartView: View {
                     .font(.title)
                     .padding()
             }
-        }
-    }
-    
-    private func imageView(with imageUrl: String) -> some View {
-        let pokemonImageURL = URL(string: imageUrl)
-        return ZStack(alignment: .topTrailing) {
-            AsyncImage(url: pokemonImageURL) { phase in
-                switch phase {
-                case .empty:
-                    ProgressView()
-                case .success(let image):
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 280, height: 280)
-                case .failure(let error):
-                    Text("Failed to load image: \(error.localizedDescription)")
-                @unknown default:
-                    Text("Unknown image loading state")
-                }
-            }
-            .background(.thinMaterial)
-            .clipShape(Circle())
         }
     }
     

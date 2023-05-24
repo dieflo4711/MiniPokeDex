@@ -20,7 +20,7 @@ struct BookmarkDetailView: View {
             Text(pokemon.name.capitalized)
                 .font(.title)
             
-            imageView
+            ImageView(url: pokemon.url)
         }
         .overlay {
             GeometryReader { geometry in
@@ -32,14 +32,14 @@ struct BookmarkDetailView: View {
         }
         .presentationDetents([.height(sheetHeight)])
         .onAppear {
-            viewModel.prepareViewModel(pokemon)
+            viewModel.prepareViewModel(with: pokemon)
         }
     }
     
     private var headerButtons: some View {
         HStack {
             Button(action: {
-                toggleBookmark()
+                viewModel.toggleBookmark(for: pokemon)
             }) {
                 Image(systemName: viewModel.bookmarked ? "bookmark.fill" : "bookmark")
                     .font(.title)
@@ -55,34 +55,6 @@ struct BookmarkDetailView: View {
                     .padding()
                     .foregroundColor(.black)
             }
-        }
-    }
-    
-    private var imageView: some View {
-        AsyncImage(url: URL(string: pokemon.url)) { phase in
-            switch phase {
-            case .empty:
-                ProgressView()
-            case .success(let image):
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 280, height: 280)
-            case .failure(let error):
-                Text("Failed to load image: \(error.localizedDescription)")
-            @unknown default:
-                Text("Unknown image loading state")
-            }
-        }
-        .background(.thinMaterial)
-        .clipShape(Circle())
-    }
-    
-    private func toggleBookmark() {
-        if viewModel.bookmarked {
-            viewModel.removeBookmark(pokemon)
-        } else {
-            viewModel.addBookmark(pokemon)
         }
     }
     

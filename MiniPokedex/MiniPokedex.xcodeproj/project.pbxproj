@@ -28,6 +28,7 @@
 		0AEDED602A1E4C9700161031 /* BookmarkDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED5F2A1E4C9700161031 /* BookmarkDetailViewModel.swift */; };
 		0AEDED622A1E6B3400161031 /* TypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED612A1E6B3400161031 /* TypeView.swift */; };
 		0AEDED642A1E6E3300161031 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED632A1E6E3300161031 /* StatsView.swift */; };
+		0AEDED662A1EB4E100161031 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED652A1EB4E100161031 /* ImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		0AEDED5F2A1E4C9700161031 /* BookmarkDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkDetailViewModel.swift; sourceTree = "<group>"; };
 		0AEDED612A1E6B3400161031 /* TypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeView.swift; sourceTree = "<group>"; };
 		0AEDED632A1E6E3300161031 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		0AEDED652A1EB4E100161031 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 				0AEDED5D2A1E4B5600161031 /* BookmarkDetailView.swift */,
 				0AEDED612A1E6B3400161031 /* TypeView.swift */,
 				0AEDED632A1E6E3300161031 /* StatsView.swift */,
+				0AEDED652A1EB4E100161031 /* ImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AEDED662A1EB4E100161031 /* ImageView.swift in Sources */,
 				0AEDED4A2A1E0CDE00161031 /* Pokemon.swift in Sources */,
 				0AEDED542A1E298200161031 /* Pokemons.swift in Sources */,
 				0AEDED4C2A1E0D5800161031 /* ParentStartViewModel.swift in Sources */,

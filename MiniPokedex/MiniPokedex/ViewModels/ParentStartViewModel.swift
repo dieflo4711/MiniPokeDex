@@ -35,7 +35,6 @@ class ParentStartViewModel: ObservableObject {
     func toggleBookmark() {
         if let name = pokemon?.name, let sprite = pokemon?.sprite {
             let pokemon = Pokemon(name: name, url: sprite)
-            
             if bookmarked {
                 removeBookmark(pokemon)
             } else {

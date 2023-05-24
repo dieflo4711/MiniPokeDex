@@ -10,7 +10,7 @@ import SwiftUI
 class BookmarkDetailViewModel: ObservableObject {
     @Published var bookmarked = false
     
-    func prepareViewModel(_ pokemon: Pokemon) {
+    func prepareViewModel(with pokemon: Pokemon) {
         isBookmarked(pokemon)
     }
     
@@ -28,11 +28,12 @@ class BookmarkDetailViewModel: ObservableObject {
         bookmarked = PokemonService.shared.isBookmarked(pokemon)
     }
     
-    func getBookmarkedPokemon() -> Binding<[Pokemon]> {
-        return Binding<[Pokemon]>(
-            get: { PokemonService.shared.fetchBookmarked() },
-            set: { _ in }
-        )
+    func toggleBookmark(for pokemon: Pokemon) {
+        if bookmarked {
+            removeBookmark(pokemon)
+        } else {
+            addBookmark(pokemon)
+        }
     }
 }
 
