@@ -69,9 +69,9 @@ struct ParentStartView: View {
             Button(action: {
                 viewModel.toggleBookmark()
             }) {
-                Image(systemName: viewModel.bookmarked ? "bookmark.fill" : "bookmark")
+                Image(systemName: viewModel.bookmarked ? "heart.fill" : "heart")
                     .font(.title)
-                    .padding()
+                    .padding(.trailing)
                     .foregroundColor(.white)
             }
         }
@@ -102,34 +102,42 @@ struct ParentStartView: View {
     }
     
     private var buttonsView: some View {
-        HStack {
+        HStack(alignment: .center) {
             Button(action: {
                 viewModel.toggleSelected()
             }) {
-                Text("Use")
+                Text(viewModel.isSelected ? "Unselect" : "Select")
                     .font(.title3)
+                    .bold()
                     .padding()
-                    .background(viewModel.isSelected ? Color.green : Color.clear)
-                    .foregroundColor(viewModel.isSelected ? .white : Color.black)
+                    .frame(maxWidth: .infinity)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(viewModel.isSelected ? Color.green : Color.black, lineWidth: 1)
+                            .stroke(viewModel.isSelected ? Color.blue : Color.black, lineWidth: 1)
                     )
+                    .background(viewModel.isSelected ? Color.blue : Color.clear)
+                    .foregroundColor(viewModel.isSelected ? .white : Color.black)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
             }
+            
+            Spacer() // Add a spacer to distribute the available space evenly
             
             Button(action: {
                 Task {
                     await viewModel.getPokemon()
                 }
             }) {
-                Text("Change")
+                Text("Next")
                     .font(.title3)
+                    .bold()
                     .padding()
-                    .background(Color.blue)
+                    .frame(maxWidth: .infinity) // Set maximum width to fill available space
+                    .background(Color.green)
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
         }
+        .frame(maxHeight: .infinity)
     }
 }
 

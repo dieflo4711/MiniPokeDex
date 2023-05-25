@@ -15,24 +15,29 @@ struct SelectedView: View {
             if let pokemon = viewModel.pokemon {
                 Text(pokemon.name.capitalized)
                     .font(.title)
+                    .padding(.top, 20)
                 
                 ImageView(url: pokemon.url)
                 
                 Button(action: {
                     viewModel.toggleSelected()
                 }) {
-                    Text("Use")
+                    Text(viewModel.isSelected ? "Unselect" : "Select")
                         .font(.title3)
+                        .bold()
                         .padding()
-                        .background(viewModel.isSelected ? Color.green : Color.clear)
-                        .foregroundColor(viewModel.isSelected ? .white : Color.black)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(viewModel.isSelected ? Color.green : Color.black, lineWidth: 1)
+                                .stroke(viewModel.isSelected ? Color.blue : Color.black, lineWidth: 1)
                         )
+                        .background(viewModel.isSelected ? Color.blue : Color.clear)
+                        .foregroundColor(viewModel.isSelected ? .white : Color.black)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
+                .padding(.top, 20)
+                Spacer()
             } else {
-                Text("Your are currently not using a Pokemon")
+                Text("YOu have not selected a Pokémon")
                     .font(.title)
                     .padding()
             }
@@ -50,9 +55,8 @@ struct SelectedView: View {
             Button(action: {
                 viewModel.toggleBookmark()
             }) {
-                Image(systemName: viewModel.bookmarked ? "bookmark.fill" : "bookmark")
+                Image(systemName: viewModel.bookmarked ? "heart.fill" : "heart")
                     .font(.title2)
-                    .padding()
                     .foregroundColor(.white)
             }
         }

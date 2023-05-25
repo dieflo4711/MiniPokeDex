@@ -41,7 +41,7 @@ struct BookmarkDetailView: View {
             Button(action: {
                 viewModel.toggleBookmark(for: pokemon)
             }) {
-                Image(systemName: viewModel.bookmarked ? "bookmark.fill" : "bookmark")
+                Image(systemName: viewModel.bookmarked ? "heart.fill" : "heart")
                     .font(.title)
                     .padding()
                     .foregroundColor(.blue)
