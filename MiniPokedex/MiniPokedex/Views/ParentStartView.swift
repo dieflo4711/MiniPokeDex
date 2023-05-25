@@ -102,9 +102,7 @@ struct ParentStartView: View {
     private var buttonsView: some View {
         HStack(alignment: .center) {
             SelectedPokemonButtonView(isSelected: viewModel.isSelected,
-                                      toggleSelected: {
-                                            viewModel.toggleSelected()
-                                        },
+                                      toggleSelected: { viewModel.toggleSelected() },
                                       useInfinityMaxWidth: true)
             
             Spacer()

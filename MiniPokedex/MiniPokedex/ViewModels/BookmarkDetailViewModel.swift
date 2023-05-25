@@ -41,25 +41,11 @@ class BookmarkDetailViewModel: ObservableObject {
     // Selected Pokémon functions
     
     func isSelected(_ pokemon: PokemonDetails) -> Bool {
-        return PokemonService.shared.isSelected(pokemon.name)
+        return PokemonService.shared.isSelected(pokemon)
     }
     
     func toggleSelected(for pokemon: PokemonDetails) {
-        if isSelected(pokemon) {
-            unselectPokemon()
-            isSelected = false
-        } else {
-            selectPokemon(pokemon)
-            isSelected = true
-        }
-    }
-    
-    func unselectPokemon() {
-        PokemonService.shared.unselectPokemon()
-    }
-    
-    func selectPokemon(_ pokemon: PokemonDetails) {
-        PokemonService.shared.selectPokemon(pokemon)
+        isSelected = PokemonService.shared.toggleSelected(pokemon)
     }
 }
 

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BookmarkListView: View {
     @StateObject private var viewModel = BookmarkListViewModel()
+    @State private var selectedRow: Int? = nil
     @State private var isShowingDetail = false
     
     init() {
@@ -35,7 +36,8 @@ struct BookmarkListView: View {
                             .bold()
                             .padding(.bottom, -15)
                         List {
-                            ForEach(bookmarkedPokemon, id: \.self) { pokemon in
+                            ForEach(bookmarkedPokemon.indices, id: \.self) { index in
+                                let pokemon = bookmarkedPokemon[index]
                                 HStack {
                                     if let url = URL(string: pokemon.image) {
                                         pokemonImageView(for: url)
@@ -50,18 +52,25 @@ struct BookmarkListView: View {
                                         .font(.title2)
                                 }
                                 .onTapGesture {
+                                    selectedRow = index
                                     isShowingDetail = true
                                 }
-                                .tag(pokemon)
-                                .sheet(isPresented: $isShowingDetail, onDismiss: {
-                                    viewModel.getBookmarkedPokemon()
-                                }) {
-                                    BookmarkDetailView(isShowingDetail: $isShowingDetail, pokemon: pokemon)
-                                }
+                                .tag(index)
                             }
                         }
-                        .toolbar {
-                            unbookmarkButton(for: bookmarkedPokemon)
+                        .sheet(isPresented: Binding(
+                            get: { isShowingDetail },
+                            set: { newValue in
+                                if !newValue {
+                                    selectedRow = nil // Reset selectedRow after dismissal
+                                    isShowingDetail = newValue
+                                    viewModel.getBookmarkedPokemon()
+                                }
+                            }
+                        )) {
+                            if let row = selectedRow {
+                                BookmarkDetailView(isShowingDetail: $isShowingDetail, pokemon: bookmarkedPokemon[row])
+                            }
                         }
                     }
                     .padding(.top, 25)

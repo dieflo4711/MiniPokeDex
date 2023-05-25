@@ -56,23 +56,10 @@ class ParentStartViewModel: ObservableObject {
     }
     
     func isSelected(_ pokemon: PokemonDetails?) -> Bool {
-        guard let pokemon = self.pokemon else { return false }
-        return PokemonService.shared.isSelected(pokemon.name)
+        return PokemonService.shared.isSelected(pokemon)
     }
     
     func toggleSelected() {
-        guard let pokemon = self.pokemon else { return }
-        
-        if isSelected(pokemon) {
-            unselectPokemon()
-            isSelected = false
-        } else {
-            PokemonService.shared.selectPokemon(pokemon)
-            isSelected = true
-        }
-    }
-    
-    func unselectPokemon() {
-        PokemonService.shared.unselectPokemon()
+        isSelected = PokemonService.shared.toggleSelected(pokemon)
     }
 }

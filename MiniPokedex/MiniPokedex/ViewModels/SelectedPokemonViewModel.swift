@@ -16,33 +16,17 @@ class SelectedPokemonViewModel: ObservableObject {
         pokemon = PokemonService.shared.getSelectedPokemon()
         
         if let pokemon = self.pokemon {
-            isSelected = isSelected(pokemon)
+            isSelected = true
             bookmarked = isBookmarked(pokemon)
         }
     }
     
     func isSelected(_ pokemon: PokemonDetails) -> Bool {
-        return PokemonService.shared.isSelected(pokemon.name)
+        return PokemonService.shared.isSelected(pokemon)
     }
     
     func toggleSelected() {
-        guard let pokemon = self.pokemon else { return }
-        
-        if isSelected(pokemon) {
-            unselectPokemon()
-            isSelected = false
-        } else {
-            selectPokemon(pokemon)
-            isSelected = true
-        }
-    }
-    
-    func unselectPokemon() {
-        PokemonService.shared.unselectPokemon()
-    }
-    
-    func selectPokemon(_ pokemon: PokemonDetails) {
-        PokemonService.shared.selectPokemon(pokemon)
+        isSelected = PokemonService.shared.toggleSelected(pokemon)
     }
     
     func isBookmarked(_ pokemon: PokemonDetails) -> Bool {

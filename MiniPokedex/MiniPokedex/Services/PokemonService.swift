@@ -13,6 +13,20 @@ class PokemonService {
     private let userDefaultsManager = UserDefaultsManager.shared
     private let limit = 500
     
+    private var _selectedPokemon: PokemonDetails?
+    
+    var selectedPokemon: PokemonDetails? {
+        get {
+            if _selectedPokemon == nil {
+                _selectedPokemon = fetchSelectedPokemon()
+            }
+            return _selectedPokemon
+        }
+        set {
+            _selectedPokemon = newValue
+        }
+    }
+    
     private func fetchPokemons() async throws -> [Pokemon] {
         let url = URL(string: "https://pokeapi.co/api/v2/pokemon?limit=" + String(limit))!
         let (data, _) = try await URLSession.shared.data(from: url)
@@ -134,20 +148,39 @@ class PokemonService {
     
     //  Selected Pokémon functions
     
-    func isSelected(_ name: String) -> Bool {
-        return userDefaultsManager.isSaved(with: name)
+    func isSelected(_ pokemon: PokemonDetails?) -> Bool {
+        guard let pokemon = pokemon, let selectedPokemon = selectedPokemon else { return false }
+        return pokemon.name == selectedPokemon.name
+    }
+    
+    
+    func toggleSelected(_ pokemon: PokemonDetails?) -> Bool {
+        guard let pokemon = pokemon else { return false}
+        if isSelected(pokemon) {
+            unselectPokemon()
+            return false
+        } else {
+            selectPokemon(pokemon)
+            return true
+        }
     }
     
     func unselectPokemon() {
         userDefaultsManager.clear()
+        selectedPokemon = nil
     }
     
     func selectPokemon(_ pokemon: PokemonDetails) {
         userDefaultsManager.save(pokemon)
+        selectedPokemon = pokemon
+    }
+    
+    func fetchSelectedPokemon() -> PokemonDetails? {
+        return userDefaultsManager.load()
     }
     
     func getSelectedPokemon() -> PokemonDetails? {
-        return userDefaultsManager.load()
+        return selectedPokemon
     }
 }
 

@@ -26,9 +26,7 @@ struct BookmarkDetailView: View {
             StatsView(stats: pokemon.stats)
             
             SelectedPokemonButtonView(isSelected: viewModel.isSelected,
-                                      toggleSelected: {
-                viewModel.toggleSelected(for: pokemon)
-            })
+                                      toggleSelected: { viewModel.toggleSelected(for: pokemon) })
             .padding(.top, 20)
         }
         .overlay {
