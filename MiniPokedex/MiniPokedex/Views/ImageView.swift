@@ -13,7 +13,7 @@ struct ImageView: View {
     var body: some View {
         ZStack {
             Circle()
-                .fill(.thinMaterial) // Choose the desired color for the circle
+                .fill(.thinMaterial)
                 .frame(width: 280, height: 280)
             AsyncImage(url: URL(string: url)) { phase in
                 switch phase {

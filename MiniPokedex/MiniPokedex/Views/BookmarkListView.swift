@@ -72,6 +72,9 @@ struct BookmarkListView: View {
                                 BookmarkDetailView(isShowingDetail: $isShowingDetail, pokemon: bookmarkedPokemon[row])
                             }
                         }
+                        .toolbar {
+                            unbookmarkButton(for: bookmarkedPokemon)
+                        }
                     }
                     .padding(.top, 25)
                     .background(Color(UIColor.systemGroupedBackground))
