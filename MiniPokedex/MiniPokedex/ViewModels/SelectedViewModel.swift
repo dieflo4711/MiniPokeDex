@@ -8,13 +8,13 @@
 import SwiftUI
 
 class SelectedViewModel: ObservableObject {
-    @Published var pokemon: Pokemon?
+    @Published var pokemon: PokemonDetails?
     
     @Published var bookmarked = false
     @Published var isSelected = false
     
     func getSelectedPokemon() {
-        pokemon = getSelected()
+        pokemon = PokemonService.shared.getSelectedPokemon()
         
         if let pokemon = self.pokemon {
             isSelected = isSelected(pokemon)
@@ -22,11 +22,7 @@ class SelectedViewModel: ObservableObject {
         }
     }
     
-    func getSelected() -> Pokemon? {
-        return PokemonService.shared.getSelectedPokemon()
-    }
-    
-    func isSelected(_ pokemon: Pokemon) -> Bool {
+    func isSelected(_ pokemon: PokemonDetails) -> Bool {
         return PokemonService.shared.isSelected(pokemon.name)
     }
     
@@ -37,7 +33,7 @@ class SelectedViewModel: ObservableObject {
             unselectPokemon()
             isSelected = false
         } else {
-            PokemonService.shared.selectPokemon(pokemon)
+            selectPokemon(pokemon)
             isSelected = true
         }
     }
@@ -46,7 +42,11 @@ class SelectedViewModel: ObservableObject {
         PokemonService.shared.unselectPokemon()
     }
     
-    func isBookmarked(_ pokemon: Pokemon) -> Bool {
+    func selectPokemon(_ pokemon: PokemonDetails) {
+        PokemonService.shared.selectPokemon(pokemon)
+    }
+    
+    func isBookmarked(_ pokemon: PokemonDetails) -> Bool {
         return PokemonService.shared.isBookmarked(pokemon)
     }
     
@@ -60,12 +60,12 @@ class SelectedViewModel: ObservableObject {
         }
     }
 
-    func removeBookmark(_ pokemon: Pokemon) {
+    func removeBookmark(_ pokemon: PokemonDetails) {
         PokemonService.shared.removePokemonBookmark(for: pokemon)
         bookmarked.toggle()
     }
     
-    func addBookmark(_ pokemon: Pokemon) {
+    func addBookmark(_ pokemon: PokemonDetails) {
         PokemonService.shared.addPokemonBookmark(for: pokemon)
         bookmarked.toggle()
     }

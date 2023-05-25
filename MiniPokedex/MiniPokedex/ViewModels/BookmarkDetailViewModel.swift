@@ -10,25 +10,21 @@ import SwiftUI
 class BookmarkDetailViewModel: ObservableObject {
     @Published var bookmarked = false
     
-    func prepareViewModel(with pokemon: Pokemon) {
-        isBookmarked(pokemon)
+    func isBookmarked(_ pokemon: PokemonDetails) {
+        bookmarked = PokemonService.shared.isBookmarked(pokemon)
     }
     
-    func removeBookmark(_ pokemon: Pokemon) {
+    func removeBookmark(_ pokemon: PokemonDetails) {
         PokemonService.shared.removePokemonBookmark(for: pokemon)
         bookmarked.toggle()
     }
     
-    func addBookmark(_ pokemon: Pokemon) {
+    func addBookmark(_ pokemon: PokemonDetails) {
         PokemonService.shared.addPokemonBookmark(for: pokemon)
         bookmarked.toggle()
     }
     
-    func isBookmarked(_ pokemon: Pokemon) {
-        bookmarked = PokemonService.shared.isBookmarked(pokemon)
-    }
-    
-    func toggleBookmark(for pokemon: Pokemon) {
+    func toggleBookmark(for pokemon: PokemonDetails) {
         if bookmarked {
             removeBookmark(pokemon)
         } else {

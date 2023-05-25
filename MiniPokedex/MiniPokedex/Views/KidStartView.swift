@@ -17,7 +17,7 @@ struct KidStartView: View {
                     .font(.title)
                     .padding(.top, 10)
                 
-                ImageView(url: pokemon.sprite)
+                ImageView(url: pokemon.image)
                 
                 TypeView(type: pokemon.type)
                 

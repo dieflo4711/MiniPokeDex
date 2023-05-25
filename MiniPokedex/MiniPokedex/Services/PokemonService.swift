@@ -71,7 +71,7 @@ class PokemonService {
         }
     }
     
-    func getDisplayData(for pokemonName: String?) async -> PokemonDisplay? {
+    func getDisplayData(for pokemonName: String?) async -> PokemonDetails? {
         guard let name = pokemonName else { return nil }
         
         let pokemonData = await getData(for: name)
@@ -88,12 +88,12 @@ class PokemonService {
             
         let pokeTypes = pokemonData?.types.map { $0.type.name } ?? []
         
-        let pokemonDisplay = PokemonDisplay(name: name,
-                                            sprite: pokemonData?.sprites.front_default ?? "",
+        let pokemonDetails = PokemonDetails(name: name,
+                                            image: pokemonData?.sprites.front_default ?? "",
                                             stats: pokemonStats,
                                             type: pokeTypes)
         
-        return pokemonDisplay
+        return pokemonDetails
     }
     
     func fetchPokemons() -> [Pokemon] {
@@ -112,24 +112,24 @@ class PokemonService {
         coreDataManager.removePokemon(withName: name)
     }
     
-    func fetchBookmarked() -> [Pokemon] {
-        return coreDataManager.fetchBookmarked()
+    func fetchBookmarked() -> [PokemonDetails] {
+        return coreDataManager.fetchBookmarkedPokemon()
     }
     
-    func removePokemonBookmark(for pokemon: Pokemon) {
+    func removePokemonBookmark(for pokemon: PokemonDetails) {
         coreDataManager.removeBookmark(withName: pokemon.name)
     }
     
-    func addPokemonBookmark(for pokemon: Pokemon) {
-        coreDataManager.bookmarkPokemon(name: pokemon.name, url: pokemon.url)
+    func addPokemonBookmark(for pokemon: PokemonDetails) {
+        coreDataManager.bookmark(pokemon)
     }
     
-    func isBookmarked(_ pokemon: Pokemon) -> Bool {
+    func isBookmarked(_ pokemon: PokemonDetails) -> Bool {
         return coreDataManager.isBookmarked(name: pokemon.name)
     }
     
     func removeAllBookmarks() {
-        coreDataManager.removeBookmarks()
+        coreDataManager.removeAllBookmarks()
     }
     
     //  Selected Pokémon functions
@@ -142,11 +142,11 @@ class PokemonService {
         userDefaultsManager.clear()
     }
     
-    func selectPokemon(_ pokemon: Pokemon) {
+    func selectPokemon(_ pokemon: PokemonDetails) {
         userDefaultsManager.save(pokemon)
     }
     
-    func getSelectedPokemon() -> Pokemon? {
+    func getSelectedPokemon() -> PokemonDetails? {
         return userDefaultsManager.load()
     }
 }

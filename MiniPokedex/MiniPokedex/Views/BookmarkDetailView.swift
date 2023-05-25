@@ -11,7 +11,7 @@ struct BookmarkDetailView: View {
     @StateObject private var viewModel = BookmarkDetailViewModel()
     @State private var sheetHeight: CGFloat = .zero
     @Binding var isShowingDetail: Bool
-    let pokemon: Pokemon
+    let pokemon: PokemonDetails
     
     var body: some View {
         VStack {
@@ -20,7 +20,7 @@ struct BookmarkDetailView: View {
             Text(pokemon.name.capitalized)
                 .font(.title)
             
-            ImageView(url: pokemon.url)
+            ImageView(url: pokemon.image)
         }
         .overlay {
             GeometryReader { geometry in
@@ -32,7 +32,7 @@ struct BookmarkDetailView: View {
         }
         .presentationDetents([.height(sheetHeight)])
         .onAppear {
-            viewModel.prepareViewModel(with: pokemon)
+            viewModel.isBookmarked(pokemon)
         }
     }
     
@@ -72,7 +72,11 @@ struct InnerHeightPreferenceKey: PreferenceKey {
 
 struct BookmarkDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        let pokemon = Pokemon(name: "Pikachu", url: "pikachu_sprite_url")
-        return BookmarkDetailView(isShowingDetail: .constant(true), pokemon: pokemon)
+        let stats = PokemonStats(hp: 100, attack: 80, defense: 70, specialAttack: 120, specialDefense: 90, speed: 95)
+        let pokemonDetails = PokemonDetails(name: "Pikachu",
+                                            image: "pikachu_sprite.png",
+                                            stats: stats,
+                                            type: ["Electric"])
+        return BookmarkDetailView(isShowingDetail: .constant(true), pokemon: pokemonDetails)
     }
 }

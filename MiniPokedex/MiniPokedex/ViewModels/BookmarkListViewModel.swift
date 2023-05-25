@@ -8,7 +8,7 @@
 import SwiftUI
 
 class BookmarkListViewModel: ObservableObject {
-    @Published var bookmarkedPokemon: [Pokemon]?
+    @Published var bookmarkedPokemon: [PokemonDetails]?
     
     func getBookmarkedPokemon() {
         bookmarkedPokemon = PokemonService.shared.fetchBookmarked()

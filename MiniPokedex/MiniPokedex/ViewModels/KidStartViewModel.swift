@@ -8,22 +8,13 @@
 import SwiftUI
 
 class KidStartViewModel: ObservableObject {
-    @Published var pokemon: PokemonDisplay?
+    @Published var pokemon: PokemonDetails?
     
     func getSelectedPokemon() async {
-        let mainPokemon = getSelected()
-        let displayPokemon = await getDisplayData(for: mainPokemon?.name)
+        let pokemon = PokemonService.shared.getSelectedPokemon()
         
         DispatchQueue.main.async {
-            self.pokemon = displayPokemon
+            self.pokemon = pokemon
         }
-    }
-    
-    func getSelected() -> Pokemon? {
-        return PokemonService.shared.getSelectedPokemon()
-    }
-    
-    func getDisplayData(for name: String?) async -> PokemonDisplay? {
-        return await PokemonService.shared.getDisplayData(for: name)
     }
 }

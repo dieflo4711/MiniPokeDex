@@ -84,7 +84,7 @@ struct ParentStartView: View {
                     .font(.title)
                     .foregroundColor(.blue)
                 
-                ImageView(url: pokemon.sprite)
+                ImageView(url: pokemon.image)
                 
                 TypeView(type: pokemon.type)
                 

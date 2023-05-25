@@ -17,7 +17,7 @@ struct SelectedView: View {
                     .font(.title)
                     .padding(.top, 20)
                 
-                ImageView(url: pokemon.url)
+                ImageView(url: pokemon.image)
                 
                 Button(action: {
                     viewModel.toggleSelected()

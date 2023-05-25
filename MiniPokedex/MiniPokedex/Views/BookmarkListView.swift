@@ -36,7 +36,7 @@ struct BookmarkListView: View {
                         List {
                             ForEach(bookmarkedPokemon, id: \.self) { pokemon in
                                 HStack {
-                                    if let url = URL(string: pokemon.url) {
+                                    if let url = URL(string: pokemon.image) {
                                         pokemonImageView(for: url)
                                     } else {
                                         Image(systemName: "questionmark")
@@ -92,7 +92,7 @@ struct BookmarkListView: View {
         }
     }
     
-    private func unbookmarkButton(for bookmarkedPokemon: [Pokemon]) -> some ToolbarContent {
+    private func unbookmarkButton(for bookmarkedPokemon: [PokemonDetails]) -> some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
             if !bookmarkedPokemon.isEmpty {
                 Button(action: {

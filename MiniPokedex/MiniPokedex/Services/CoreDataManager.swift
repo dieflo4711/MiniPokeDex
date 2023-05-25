@@ -123,7 +123,7 @@ class CoreDataManager: ObservableObject {
         }
     }
     
-    func removeBookmarks() {
+    func removeAllBookmarks() {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = BookmarkedEnt.fetchRequest()
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 
@@ -146,42 +146,57 @@ class CoreDataManager: ObservableObject {
         return false
     }
     
-    func fetchBookmarked() -> [Pokemon] {
+    func fetchBookmarkedPokemon() -> [PokemonDetails] {
+        let context = persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<BookmarkedEnt> = BookmarkedEnt.fetchRequest()
 
         do {
-            let fetchedEntities = try persistentContainer.viewContext.fetch(fetchRequest)
+            let bookmarkedEntities = try context.fetch(fetchRequest)
+            let pokemonDetails = bookmarkedEntities.compactMap { bookmarkedEnt -> PokemonDetails? in
+                guard let name = bookmarkedEnt.name,
+                      let image = bookmarkedEnt.image,
+                      let type = bookmarkedEnt.type as? [String],
+                      let statsEnt = bookmarkedEnt.stats,
+                      let stats = createStats(from: statsEnt)else {
+                    return nil
+                }
 
-            let pokemonArray = fetchedEntities.map { pokemonEntity -> Pokemon in
-                return Pokemon(name: pokemonEntity.name ?? "Unknown", url: pokemonEntity.url ?? "Unknown")
+                return PokemonDetails(name: name, image: image, stats: stats, type: type)
             }
-
-            return pokemonArray
+            return pokemonDetails
         } catch {
-            fatalError("Failed to fetch Pokemon entities: \(error)")
+            print("Failed to fetch bookmarked Pokemon: \(error)")
+            return []
         }
     }
     
-    func fetchBookmarkedPokemons() -> [Pokemon] {
-        let fetchRequest: NSFetchRequest<BookmarkedEnt> = BookmarkedEnt.fetchRequest()
-
-        do {
-            let fetchedEntities = try persistentContainer.viewContext.fetch(fetchRequest)
-
-            let pokemonArray = fetchedEntities.map { pokemonEntity -> Pokemon in
-                return Pokemon(name: pokemonEntity.name ?? "Unknown", url: pokemonEntity.url ?? "Unknown")
-            }
-
-            return pokemonArray
-        } catch {
-            fatalError("Failed to fetch Pokemon entities: \(error)")
-        }
+    func createStats(from statsEnt: StatsEnt) -> PokemonStats? {
+        let stats = PokemonStats(hp: Int(statsEnt.hp),
+                                 attack: Int(statsEnt.attack),
+                                 defense: Int(statsEnt.defense),
+                                 specialAttack: Int(statsEnt.specialAttack),
+                                 specialDefense: Int(statsEnt.specialDefense),
+                                 speed: Int(statsEnt.speed))
+        return stats
     }
     
-    func bookmarkPokemon(name: String, url: String) {
-        let pokemon = BookmarkedEnt(context: persistentContainer.viewContext)
-        pokemon.name = name
-        pokemon.url = url
+    func bookmark(_ pokemon: PokemonDetails) {
+        let context = persistentContainer.viewContext
+        
+        let pokemonEnt = BookmarkedEnt(context: context)
+        pokemonEnt.name = pokemon.name
+        pokemonEnt.image = pokemon.image
+        pokemonEnt.type = pokemon.type as NSObject
+        
+        var statsEnt = StatsEnt(context: context)
+        statsEnt.hp = Int32(pokemon.stats.hp)
+        statsEnt.attack = Int32(pokemon.stats.attack)
+        statsEnt.defense = Int32(pokemon.stats.defense)
+        statsEnt.specialAttack = Int32(pokemon.stats.specialAttack)
+        statsEnt.specialDefense = Int32(pokemon.stats.specialDefense)
+        statsEnt.speed = Int32(pokemon.stats.speed)
+        
+        pokemonEnt.stats = statsEnt
 
         saveContext()
     }

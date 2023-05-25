@@ -8,20 +8,18 @@
 import SwiftUI
 
 class ParentStartViewModel: ObservableObject {
-    @Published var pokemon: PokemonDisplay?
+    @Published var pokemon: PokemonDetails?
     @Published var bookmarked = false
     @Published var isSelected = false
     
     func getPokemon() async {
         let randomPokemon = await getRandomPokemon()
-        let displayPokemon = await getDisplayData(for: randomPokemon?.name)
-        let pokemon = Pokemon(name: randomPokemon?.name ?? "",
-                              url: displayPokemon?.sprite ?? "")
+        let pokemon = await getDisplayData(for: randomPokemon?.name)
         
         DispatchQueue.main.async {
-            self.pokemon = displayPokemon
+            self.pokemon = pokemon
             self.bookmarked = self.isBookmarked(pokemon)
-            self.isSelected = self.isSelected(self.pokemon)
+            self.isSelected = self.isSelected(pokemon)
         }
     }
     
@@ -29,36 +27,35 @@ class ParentStartViewModel: ObservableObject {
         return await PokemonService.shared.getRandomPokemon()
     }
     
-    func getDisplayData(for name: String?) async -> PokemonDisplay? {
+    func getDisplayData(for name: String?) async -> PokemonDetails? {
         return await PokemonService.shared.getDisplayData(for: name)
     }
     
-    func isBookmarked(_ pokemon: Pokemon) -> Bool {
+    func isBookmarked(_ pokemon: PokemonDetails?) -> Bool {
+        guard let pokemon = pokemon else { return false }
         return PokemonService.shared.isBookmarked(pokemon)
     }
     
     func toggleBookmark() {
-        if let name = pokemon?.name, let sprite = pokemon?.sprite {
-            let pokemon = Pokemon(name: name, url: sprite)
-            if bookmarked {
-                removeBookmark(pokemon)
-            } else {
-                addBookmark(pokemon)
-            }
+        guard let pokemon = self.pokemon else { return }
+        if bookmarked {
+            removeBookmark(pokemon)
+        } else {
+            addBookmark(pokemon)
         }
     }
     
-    func removeBookmark(_ pokemon: Pokemon) {
+    func removeBookmark(_ pokemon: PokemonDetails) {
         PokemonService.shared.removePokemonBookmark(for: pokemon)
         bookmarked.toggle()
     }
     
-    func addBookmark(_ pokemon: Pokemon) {
+    func addBookmark(_ pokemon: PokemonDetails) {
         PokemonService.shared.addPokemonBookmark(for: pokemon)
         bookmarked.toggle()
     }
     
-    func isSelected(_ pokemon: PokemonDisplay?) -> Bool {
+    func isSelected(_ pokemon: PokemonDetails?) -> Bool {
         guard let pokemon = self.pokemon else { return false }
         return PokemonService.shared.isSelected(pokemon.name)
     }
@@ -70,7 +67,6 @@ class ParentStartViewModel: ObservableObject {
             unselectPokemon()
             isSelected = false
         } else {
-            let pokemon = Pokemon(name: pokemon.name, url: pokemon.sprite)
             PokemonService.shared.selectPokemon(pokemon)
             isSelected = true
         }

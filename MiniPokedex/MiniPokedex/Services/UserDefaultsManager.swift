@@ -15,27 +15,26 @@ class UserDefaultsManager {
     
     private init() {}
     
-    func save(_ pokemon: Pokemon) {
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(pokemon) {
-            defaults.set(encoded, forKey: key)
-        }
-    }
-    
-    func load() -> Pokemon? {
-        if let savedData = defaults.data(forKey: key) {
-            let decoder = JSONDecoder()
-            if let loadedPokemon = try? decoder.decode(Pokemon.self, from: savedData) {
-                return loadedPokemon
+    func save(_ pokemonDetails: PokemonDetails) {
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(pokemonDetails) {
+                defaults.set(encoded, forKey: key)
             }
         }
-        // Return default values if no saved data exists
+    
+    func load() -> PokemonDetails? {
+        if let savedData = defaults.data(forKey: key) {
+            let decoder = JSONDecoder()
+            if let loadedPokemonDetails = try? decoder.decode(PokemonDetails.self, from: savedData) {
+                return loadedPokemonDetails
+            }
+        }
         return nil
     }
     
     func isSaved(with name: String) -> Bool {
-        let savedPokemon = load()
-        return (savedPokemon?.name == name)
+        let savedPokemonDetails = load()
+        return (savedPokemonDetails?.name == name)
     }
     
     func clear() {
