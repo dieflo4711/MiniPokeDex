@@ -12,6 +12,7 @@ struct BookmarkListView: View {
     @State private var isShowingDetail = false
     
     init() {
+        // Adds color to the header
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = UIColor(Color.blue)

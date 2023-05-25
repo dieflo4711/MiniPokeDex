@@ -17,10 +17,19 @@ struct BookmarkDetailView: View {
         VStack {
             headerButtons
             
-            Text(pokemon.name.capitalized)
-                .font(.title)
+            TitleView(name: pokemon.name)
             
             ImageView(url: pokemon.image)
+            
+            TypeView(type: pokemon.type)
+            
+            StatsView(stats: pokemon.stats)
+            
+            SelectedPokemonButtonView(isSelected: viewModel.isSelected,
+                                      toggleSelected: {
+                viewModel.toggleSelected(for: pokemon)
+            })
+            .padding(.top, 20)
         }
         .overlay {
             GeometryReader { geometry in
@@ -32,7 +41,7 @@ struct BookmarkDetailView: View {
         }
         .presentationDetents([.height(sheetHeight)])
         .onAppear {
-            viewModel.isBookmarked(pokemon)
+            viewModel.prepareViewModel(pokemon)
         }
     }
     
@@ -43,10 +52,12 @@ struct BookmarkDetailView: View {
             }) {
                 Image(systemName: viewModel.bookmarked ? "heart.fill" : "heart")
                     .font(.title)
-                    .padding()
                     .foregroundColor(.blue)
+                    .padding()
             }
+            
             Spacer()
+            
             Button(action: {
                 closeSheet()
             }) {

@@ -13,9 +13,8 @@ struct KidStartView: View {
     var body: some View {
         VStack {
             if let pokemon = viewModel.pokemon {
-                Text(pokemon.name.capitalized)
-                    .font(.title)
-                    .padding(.top, 10)
+                TitleView(name: pokemon.name)
+                    .padding(.top, 30)
                 
                 ImageView(url: pokemon.image)
                 

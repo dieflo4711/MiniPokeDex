@@ -1,5 +1,5 @@
 //
-//  SelectedViewModel.swift
+//  SelectedPokemonViewModel.swift
 //  MiniPokedex
 //
 //  Created by diego flores leon on 2023-05-25.
@@ -7,9 +7,8 @@
 
 import SwiftUI
 
-class SelectedViewModel: ObservableObject {
+class SelectedPokemonViewModel: ObservableObject {
     @Published var pokemon: PokemonDetails?
-    
     @Published var bookmarked = false
     @Published var isSelected = false
     

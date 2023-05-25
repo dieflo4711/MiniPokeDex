@@ -1,5 +1,5 @@
 //
-//  SelectedView.swift
+//  SelectedPokemonView.swift
 //  MiniPokedex
 //
 //  Created by diego flores leon on 2023-05-25.
@@ -7,17 +7,20 @@
 
 import SwiftUI
 
-struct SelectedView: View {
-    @StateObject private var viewModel = SelectedViewModel()
+struct SelectedPokemonView: View {
+    @StateObject private var viewModel = SelectedPokemonViewModel()
     
     var body: some View {
         VStack {
             if let pokemon = viewModel.pokemon {
-                Text(pokemon.name.capitalized)
-                    .font(.title)
+                TitleView(name: pokemon.name)
                     .padding(.top, 20)
                 
                 ImageView(url: pokemon.image)
+                
+                TypeView(type: pokemon.type)
+                
+                StatsView(stats: pokemon.stats)
                 
                 Button(action: {
                     viewModel.toggleSelected()
@@ -34,10 +37,10 @@ struct SelectedView: View {
                         .foregroundColor(viewModel.isSelected ? .white : Color.black)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
-                .padding(.top, 20)
+                .padding(.top, 30)
                 Spacer()
             } else {
-                Text("YOu have not selected a Pokémon")
+                Text("You have not selected a Pokémon")
                     .font(.title)
                     .padding()
             }
@@ -63,9 +66,9 @@ struct SelectedView: View {
     }
 }
 
-struct SelectedView_Previews: PreviewProvider {
+struct SelectedPokemonView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectedView()
+        SelectedPokemonView()
     }
 }
 

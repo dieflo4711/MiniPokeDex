@@ -18,7 +18,7 @@ struct SideMenuView: View {
                 IconTextRow(systemName: "bookmark", text: "Bookmarked")
                     .foregroundColor(.blue)
             }
-            NavigationLink(destination: SelectedView()) {
+            NavigationLink(destination: SelectedPokemonView()) {
                 IconTextRow(systemName: "checkmark.circle", text: "Selected")
                     .foregroundColor(.blue)
             }

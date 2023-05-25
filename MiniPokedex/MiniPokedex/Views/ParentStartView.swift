@@ -80,9 +80,7 @@ struct ParentStartView: View {
     private var mainContentView: some View {
         VStack {
             if let pokemon = viewModel.pokemon {
-                Text(pokemon.name.uppercased())
-                    .font(.title)
-                    .foregroundColor(.blue)
+                TitleView(name: pokemon.name)
                 
                 ImageView(url: pokemon.image)
                 
@@ -103,39 +101,16 @@ struct ParentStartView: View {
     
     private var buttonsView: some View {
         HStack(alignment: .center) {
-            Button(action: {
-                viewModel.toggleSelected()
-            }) {
-                Text(viewModel.isSelected ? "Unselect" : "Select")
-                    .font(.title3)
-                    .bold()
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(viewModel.isSelected ? Color.blue : Color.black, lineWidth: 1)
-                    )
-                    .background(viewModel.isSelected ? Color.blue : Color.clear)
-                    .foregroundColor(viewModel.isSelected ? .white : Color.black)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-            }
+            SelectedPokemonButtonView(isSelected: viewModel.isSelected,
+                                      toggleSelected: {
+                                            viewModel.toggleSelected()
+                                        },
+                                      useInfinityMaxWidth: true)
             
-            Spacer() // Add a spacer to distribute the available space evenly
+            Spacer()
             
-            Button(action: {
-                Task {
-                    await viewModel.getPokemon()
-                }
-            }) {
-                Text("Next")
-                    .font(.title3)
-                    .bold()
-                    .padding()
-                    .frame(maxWidth: .infinity) // Set maximum width to fill available space
-                    .background(Color.green)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-            }
+            RandomPokemonButtonView(getPokemon: { Task { await viewModel.getPokemon() } },
+                                    useInfinityMaxWidth: true)
         }
         .frame(maxHeight: .infinity)
     }
