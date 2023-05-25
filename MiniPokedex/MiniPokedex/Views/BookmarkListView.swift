@@ -74,7 +74,6 @@ struct BookmarkListView: View {
                         }
                     }
                     .padding(.top, 25)
-                    
                     .background(Color(UIColor.systemGroupedBackground))
                 }
             }
