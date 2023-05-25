@@ -37,15 +37,6 @@ MiniPokedex is a simple iOS app built with SwiftUI that allows users to explore 
 14. From the "Selected" view, you can unselect the Pokémon or bookmark it.
 15. To view the selected Pokémon in "Kid" mode, tap on the "Kid" item in the bottom menu.
 
-## Installation
-
-To run the MiniPokedex app on your iOS device or simulator, follow these steps:
-
-1. Clone the repository or download the source code.
-2. Open the project in Xcode by double-clicking the `MiniPokedex.xcodeproj` file.
-3. Ensure that the target device or simulator is selected in Xcode's scheme menu.
-4. Press the "Run" button or use the shortcut Cmd+R to build and run the app.
-
 ## Requirements
 
 - Xcode 12 or later
